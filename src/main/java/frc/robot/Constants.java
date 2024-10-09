@@ -8,4 +8,18 @@ package frc.robot;
 public class Constants {
     public static final int drivetrainLeftFalconID = 0;
     public static final int drivetrainRightFalconID = 1;
+
+    public static final Mode currentMode = Mode.SIM;
+    public static final ControlMode currentControl = ControlMode.Controller;
+
+    public static enum Mode {
+        REAL,
+        SIM,
+        REPLAY
+    }
+    public static enum ControlMode {
+        Keyboard,
+        Controller,
+        cursedController
+    }
 }
