@@ -6,7 +6,6 @@ package frc.robot.Subsystems.Drivetrain;
 
 import com.ctre.phoenix6.controls.VoltageOut;
 import com.ctre.phoenix6.hardware.TalonFX;
-
 import edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim;
 import edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim.KitbotGearing;
 import edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim.KitbotMotor;
@@ -19,6 +18,7 @@ public class DrivetrainIOSim implements DrivetrainIO {
 
     TalonFX leftFalcon = new TalonFX(Constants.drivetrainLeftFalconID);
     TalonFX rightFalcon = new TalonFX(Constants.drivetrainRightFalconID);
+    
     
     VoltageOut leftVoltage = new VoltageOut(0);
     VoltageOut rightVoltage = new VoltageOut(0);
@@ -60,5 +60,6 @@ public class DrivetrainIOSim implements DrivetrainIO {
     public void setVolts(double left, double right) {
         leftFalcon.setControl(leftVoltage.withOutput(left));
         rightFalcon.setControl(rightVoltage.withOutput(right));
+        
     }
 }

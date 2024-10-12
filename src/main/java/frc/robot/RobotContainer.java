@@ -15,10 +15,30 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-    drivetrainSubsystem.setDefaultCommand(
-      drivetrainSubsystem.setVoltagesArcadeCommand(
-        () -> modifyJoystick(controller.getLeftY()),
-        () -> modifyJoystick(controller.getRightX())));
+    switch (Constants.currentControl) {
+      case Keyboard:
+        drivetrainSubsystem.setDefaultCommand(
+          drivetrainSubsystem.setVoltagesArcadeCommand(
+            () -> modifyJoystick(-controller.getLeftY()),
+            () -> modifyJoystick(controller.getLeftX())));
+        break;
+      case Controller:
+        drivetrainSubsystem.setDefaultCommand(
+          drivetrainSubsystem.setVoltagesArcadeCommand(
+            () -> modifyJoystick(-controller.getLeftY()),
+            () -> modifyJoystick(controller.getRightX())));
+        break;
+      case cursedController:
+        drivetrainSubsystem.setDefaultCommand(
+          drivetrainSubsystem.setVoltagesArcadeCommand(
+            () -> modifyJoystick(-controller.getLeftY()),
+            () -> modifyJoystick(controller.getRightY())));
+        break;
+    }
+    //drivetrainSubsystem.setDefaultCommand(
+    //  drivetrainSubsystem.setVoltagesArcadeCommand(
+    //    () -> modifyJoystick(-controller.getLeftY()),
+    //    () -> modifyJoystick(controller.getLeftX())));
   }
 
   public Command getAutonomousCommand() {

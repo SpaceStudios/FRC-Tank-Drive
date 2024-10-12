@@ -10,6 +10,9 @@ import org.littletonrobotics.junction.Logger;
 
 import com.ctre.phoenix6.controls.VoltageOut;
 import com.ctre.phoenix6.hardware.TalonFX;
+import com.revrobotics.CANSparkLowLevel.MotorType;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
@@ -22,12 +25,14 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class DrivetrainSubsystem extends SubsystemBase {
-  DrivetrainIO io = new DrivetrainIOSim();
+  DrivetrainIO io = new DrivetrainIOSparkMaxs();
   DrivetrainIOInputsAutoLogged inputs = new DrivetrainIOInputsAutoLogged();
   DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(new Rotation2d(), 0, 0);
 
-  TalonFX leftFalcon = new TalonFX(Constants.drivetrainLeftFalconID);
-  TalonFX rightFalcon = new TalonFX(Constants.drivetrainRightFalconID);
+  CANSparkMax leftSpark = new CANSparkMax(Constants.drivetrainLeftSparkID, MotorType.kBrushless);
+  CANSparkMax rightSpark = new CANSparkMax(Constants.drivetrainRightSparkID, MotorType.kBrushless);
+  RelativeEncoder LeftEncoder = leftSpark.getEncoder();
+  RelativeEncoder RightEncoder = rightSpark.getEncoder();
 
   VoltageOut leftVoltage = new VoltageOut(0);
   VoltageOut rightVoltage = new VoltageOut(0);
