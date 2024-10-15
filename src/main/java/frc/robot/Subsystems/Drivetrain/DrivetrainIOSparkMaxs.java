@@ -61,8 +61,6 @@ public class DrivetrainIOSparkMaxs implements DrivetrainIO{
         inputs.rightVelocityMetersPerSecond = RightEncoder.getVelocity();
         inputs.rightCurrentAmps = new double[] {rightSpark.getOutputCurrent()};
         inputs.rightTempCelsius = new double[] {rightSpark.getMotorTemperature()};
-
-
     }
 
     @Override
