@@ -29,11 +29,6 @@ public class DrivetrainSubsystem extends SubsystemBase {
   DrivetrainIOInputsAutoLogged inputs = new DrivetrainIOInputsAutoLogged();
   DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(new Rotation2d(), 0, 0);
 
-  CANSparkMax leftSpark = new CANSparkMax(Constants.drivetrainLeftSparkID, MotorType.kBrushless);
-  CANSparkMax rightSpark = new CANSparkMax(Constants.drivetrainRightSparkID, MotorType.kBrushless);
-  RelativeEncoder LeftEncoder = leftSpark.getEncoder();
-  RelativeEncoder RightEncoder = rightSpark.getEncoder();
-
   VoltageOut leftVoltage = new VoltageOut(0);
   VoltageOut rightVoltage = new VoltageOut(0);
 
