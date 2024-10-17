@@ -25,7 +25,28 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class DrivetrainSubsystem extends SubsystemBase {
-  DrivetrainIO io = new DrivetrainIOSparkMaxs();
+  DrivetrainIO io;
+  switch (Constants.currentMode) {
+    case SIM:
+      io = new DrivetrainIOSim();
+      break;
+    case REAL:
+      switch(Constants.MotorController) {
+        case SparkMax:
+          io = new DrivetrainIOSparkMaxs();
+          break;
+        case TalonFX:
+          io = new DrivetrainIOSim();
+          break;
+        case default:
+          io = new DrivetrainIOSparkMaxs();
+          break;
+      }
+      break;
+    case default:
+      io = new DrivetrainIOSim();
+      break;
+  }
   DrivetrainIOInputsAutoLogged inputs = new DrivetrainIOInputsAutoLogged();
   DifferentialDriveOdometry odometry = new DifferentialDriveOdometry(new Rotation2d(), 0, 0);
 
