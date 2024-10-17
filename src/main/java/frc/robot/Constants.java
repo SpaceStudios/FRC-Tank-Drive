@@ -15,12 +15,19 @@ public class Constants {
 
     public static final Mode currentMode = Mode.REAL;
     public static final ControlMode currentControl = ControlMode.Controller;
+    public static final MotorController currentMotor = MotorController.SparkMax;
 
     public static enum Mode {
         REAL,
         SIM,
         REPLAY
     }
+
+    public static enum MotorController {
+        SparkMax,
+        TalonFX
+    }
+    
     public static enum ControlMode {
         Keyboard,
         Controller,
