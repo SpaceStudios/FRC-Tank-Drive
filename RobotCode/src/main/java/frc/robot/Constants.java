@@ -6,6 +6,7 @@ package frc.robot;
 
 /** Add your docs here. */
 public class Constants {
+    // Drive Train Constants
     public static final int drivetrainLeftFalconID = 0;
     public static final int drivetrainRightFalconID = 1;
     public static final int drivetrainLeftSparkID = 1;
@@ -25,7 +26,7 @@ public class Constants {
 
     public static enum MotorController {
         SparkMax,
-        TalonFX
+        TalonFX,
     }
     
     public static enum ControlMode {
