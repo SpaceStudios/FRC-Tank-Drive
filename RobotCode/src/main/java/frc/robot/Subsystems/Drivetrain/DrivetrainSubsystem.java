@@ -38,6 +38,9 @@ public class DrivetrainSubsystem extends SubsystemBase {
         case TalonFX:
           io = new DrivetrainIOSim();
           break;
+        case TalonSRX:
+          io = new DriveTrainIOTalonSRX();
+          break;
         case default:
           io = new DrivetrainIOSparkMaxs();
           break;
@@ -64,7 +67,7 @@ public class DrivetrainSubsystem extends SubsystemBase {
   public Command setVoltagesArcadeCommand(DoubleSupplier drive, DoubleSupplier steer) {
     return new RunCommand(() -> {
       var speeds = DifferentialDrive.arcadeDriveIK(drive.getAsDouble(), steer.getAsDouble(), false);
-      this.setVoltages(speeds.left * 12, speeds.right * 12);
+      this.setVoltages(speeds.left * Constants.DriveTrainForce, speeds.right * DriveTrainForce);
     }, this);
   }
 
